@@ -133,7 +133,12 @@ int main(void)
 			/* split bar */
 			strncat(buf, "^f4^^d^^r0,0,1,14^^f4^", sizeof(buf));
 
-			batt_level=batt0.percent;
+			if(batt0.is_charging && charge_blink){
+				batt_level=0;
+			} else {	
+				batt_level=batt0.percent;
+			}
+
 			if(batt_level>0){
 				batt_level=(batt_level *2) / 10;
 			}
